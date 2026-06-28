@@ -147,8 +147,74 @@ Lass die Modelle **Pinyin mit expliziten Tonnummern** ausgeben (`ma1`), fixiere 
 - *Decoupling Recognition and Transcription in Mandarin ASR* (arXiv:2108.01129): Trennung von Aussprache-Ebene (Pinyin/Initial/Final/Ton) und Zeichen-Transkription.
 - *Pitch-Aware RNN-T* HTML (arXiv:2406.04595): initial-final-tone-Definition, 214 tonale Phoneme.
 
+---
+
+## 9. Pinyin-CER statt Hanzi-CER — und phonetisch *gewichtete* Metriken
+
+> **Frage:** Gibt es Papers, die CER nicht auf Zeichen, sondern auf Pinyin messen? Und: „dian vs. lian" (1 Laut daneben) sollte doch viel weniger bestraft werden als „dian vs. cao" (komplett daneben). Außerdem: Hanzi-CER ist für einen Vokabeltrainer irrelevant, oder?
+
+**Kurz: Ja zu beidem — und deine Intuition hat einen Namen.** Es gibt drei Stufen von „streng" zu „phonetisch fair":
+
+### Stufe 1 — Hanzi-CER (Editierdistanz auf Zeichen)
+Alles-oder-nichts pro Zeichen, Ton implizit. 电 falsch = 1 Fehler, egal *wie* falsch. **Schlechteste Wahl für deinen Zweck.**
+
+### Stufe 2 — Pinyin-CER / Pinyin Error Rate (Editierdistanz auf dem Pinyin-*String*)
+Hier wird auf der Buchstabenfolge des Pinyin gerechnet. **Das löst dein erstes Beispiel schon teilweise:**
+- `dian` → `lian`: **1** Substitution (d→l) bei 4 Zeichen
+- `dian` → `cao`: **~3** Editieroperationen
+
+Der Near-Miss kostet also automatisch weniger als der Total-Miss. **Papers in deiner Liste, die genau das tun:**
+
+| Paper | Metrik | Wert | Töne? |
+|---|---|---|---|
+| **Zhengjie & Cheng (13)** | Pinyin Error Rate | 1,9 % | nein (Pinyin ohne Ton) |
+| **Chen SCCM (14)** | Pinyin-CER | 2,41 % | nein |
+| **Li PY-GEC (11)** | Pinyin-Feature-Integration; Cosine-Similarity phonetisch ähnlicher Zeichen 0,26→0,82 | — | teils |
+| **Chirkova (21)** | CER/WER auf Romanisierung (Pinyin/IPA), getrennt nach Konsonant/Vokal/Ton | — | ja |
+
+→ Pinyin-CER existiert also und ist literatur-etabliert. **Aber:** String-Editierdistanz behandelt jede Buchstaben-Substitution gleich teuer (`b→p` kostet so viel wie `b→x`). Das ist noch nicht ganz, was du willst.
+
+### Stufe 3 — Phonetisch *gewichtete* Distanz (genau deine Intuition, formalisiert)
+Hier wird der Substitutionspreis **nach phonetischer Ähnlichkeit** gewichtet: ein Laut, der nur in *einem* Merkmal abweicht (z. B. Stimmhaftigkeit `p`/`b`), kostet weniger als ein völlig anderer Laut. **Etablierte Metriken:**
+
+- **PFER (Phone/Phonetic Feature Error Rate)** — Editierdistanz über **24 artikulatorische PanPhon-Merkmale**; jede Substitution bekommt Teilpunkte je nach Merkmalsabstand. **Liegt in deiner Liste:** Zhu et al. (2025, ZIPA, Paper 18) berichten PFER **0,44** für Mandarin. Zitat: *„the top errors are the substitution of vowels that are close in the vowel space"* (Sec. 7, S. 8) — d. h. die Metrik bestraft genau die *nahen* Verwechslungen mild.
+- **WPER (Weighted Phoneme Error Rate)** — ersetzt die Substitutions-*Zählung* durch die Summe der Phonem-Ähnlichkeiten (Ähnlichkeitsmatrix ∈ (0,1)); abgestufte statt binärer Strafen (Phoneme-Similarity-Modeling, arXiv:2507.14346).
+- **Artikulatorisch gewichtete Phonem-Editierdistanz** — explizit für **Aussprache-Scoring im Sprachenlernen** entwickelt; `p`/`b` (nur Stimmhaftigkeit) kostet weniger als `p`/`k` (arXiv:1905.02639). Das ist quasi die Metrik-Blaupause für einen Vokabeltrainer.
+
+→ **Das ist die rigorose Antwort auf „dian/lian << dian/cao":** phonetisch gewichtete Editierdistanz (PFER/WPER). Kein Paper im Korpus wendet sie auf **multimodale LLMs für Mandarin mit Tönen** an — erneut deine Lücke.
+
+### Dein konzeptioneller Punkt: Ist Hanzi-CER „Quatsch" für einen Vokabeltrainer?
+
+**Im Kern ja — mit einer Nuance.** Für Aussprache-Feedback ist die *Zeichenidentität* tatsächlich irrelevant: Wenn Initial, Final und Ton stimmen, war die Aussprache korrekt — *welches* Zeichen das Modell daraus rät, ist egal. Zwei Gründe, warum phonetische Bewertung sogar *besser* ist:
+
+1. **Hanzi-CER misst das Falsche.** Es belohnt Homophon-Disambiguierung (Sprachmodell-Wissen), nicht Aussprache. Für einen Trainer ist das die falsche Zielgröße.
+2. **Hanzi-CER lädt das Target-Leakage-Problem ein** (Nordstern „linguistic trap"): Sobald das Modell auf ein plausibles Zeichen normalisiert, „korrigiert" es den Lernerfehler weg. Phonetische Bewertung dessen, *was tatsächlich gesprochen wurde* (Pinyin+Ton), umgeht das.
+
+**Die eine Nuance:** Hanzi-CER trotzdem *zusätzlich* berichten — aber nur als **Vergleichsanker zur ASR-Literatur** (RQ4 vs. Whisper/Seed-ASR, die alle in Hanzi-CER berichten). Deine *inhaltliche* Bewertung baust du auf der phonetischen Ebene auf.
+
+### Empfehlung (ergänzt Abschnitt 7)
+Für den Vokabeltrainer-Zweck ist die ideale Metrik-Hierarchie:
+
+| Zweck | Metrik | Begründung |
+|---|---|---|
+| Literatur-Vergleich | Hanzi-CER | nur Vergleichbarkeit (RQ4) |
+| Segment „streng" | Pinyin-CER (tonlos) | Initial+Final, Near-Miss schon abgestuft |
+| Segment „phonetisch fair" | **PFER / WPER** | `d→l` < `d→c`; Teilpunkte nach Merkmalen (RQ2b, RQ5) |
+| Ton | **TER** + Konfusionsmatrix | Töne separat (RQ2c, RQ5) |
+
+So bestrafst du Near-Misses fair, trennst Laut von Ton, und vermeidest die Zeichen-Falle — genau was ein Aussprache-Trainer braucht.
+
+**Belege Stufe 3 (online):**
+- *Phoneme Similarity Modeling for Phonetic Error Detection* (arXiv:2507.14346): WPER, Phonem-Ähnlichkeitsmatrix, abgestufte Strafen.
+- *Transparent pronunciation scoring using articulatorily weighted phoneme edit distance* (arXiv:1905.02639): gewichtete Editierdistanz fürs Aussprache-Scoring.
+- PanPhon-Merkmals-Editierdistanz als Grundlage von PFER (Zhu et al. ZIPA, Paper 18).
+
+---
+
 Sources:
 - https://arxiv.org/abs/2004.13522
 - https://arxiv.org/abs/2108.01129
 - https://arxiv.org/html/2406.04595v1
 - https://pmc.ncbi.nlm.nih.gov/articles/PMC12233228/ (Chen et al., SCCM — Pinyin/Zeichen-Erkennung)
+- https://arxiv.org/html/2507.14346v1 (WPER — Phoneme Similarity Modeling)
+- https://arxiv.org/abs/1905.02639 (Articulatorily weighted phoneme edit distance — pronunciation scoring)

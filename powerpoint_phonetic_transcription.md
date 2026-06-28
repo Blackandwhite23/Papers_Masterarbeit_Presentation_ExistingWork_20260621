@@ -123,40 +123,56 @@
 
 ---
 
-# Folie T1: Transkriptionssysteme für Mandarin — Überblick
+# Folie T1: Transkriptionssysteme für Mandarin — Vollständiger Überblick
 
-**Folientitel:** Phonetic Transcription Systems for Mandarin Chinese
+**Folientitel:** All Phonetic Transcription Systems for Mandarin Chinese
+
+**A. Aktive Systeme (in der Literatur oder Praxis verwendet)**
 
 | System | Beispiel: 妈/麻/马/骂 | Zeichen | Verbreitung | LLM-Trainingsdaten |
 |---|---|---|---|---|
-| **Hanyu Pinyin** | mā, má, mǎ, mà | 26 lat. Buchstaben + Diakritika | 🌍 Internationaler Standard (UN, ISO 7098) | ✅ Massiv |
-| **Pinyin + Tonnummer** | ma1, ma2, ma3, ma4 | 26 lat. Buchstaben + Ziffern | 🌍 Standard (digital) | ✅ Massiv |
-| **IPA** | [ma˥], [ma˧˥], [ma˨˩˦], [ma˥˩] | ~100+ IPA-Symbole | 🎓 Akademisch | ⚠️ Wenig |
-| **IPA + Chao-Nummern** | [ma55], [ma35], [ma214], [ma51] | ~100+ Symbole + Ziffern | 🎓 Sinologie | ⚠️ Wenig |
-| **Zhuyin (Bopomofo)** | ㄇㄚ, ㄇㄚˊ, ㄇㄚˇ, ㄇㄚˋ | 37 Symbole | 🇹🇼 Taiwan | ⚠️ Taiwan-only |
-| **Wade-Giles** | ma¹, ma², ma³, ma⁴ | 26 lat. Buchstaben + Hochzahlen | 📚 Historisch | ⚠️ Ältere Texte |
-| **Gwoyeu Romatzyh** | ma, mar, maa, mah | 26 lat. Buchstaben (Ton im Buchstaben) | 📚 Veraltet | ❌ Sehr selten |
+| **Hanyu Pinyin** | mā, má, mǎ, mà | 26 lat. Buchstaben + Diakritika | 🌍 Internationaler Standard (UN, ISO 7098, seit 1958) | ✅ Massiv |
+| **Pinyin + Tonnummer** | ma1, ma2, ma3, ma4 | 26 lat. Buchstaben + Ziffern | 🌍 Standard (digital/didaktisch) | ✅ Massiv |
+| **IPA + Tone Letters** | [ma˥], [ma˧˥], [ma˨˩˦], [ma˥˩] | ~100+ IPA-Symbole + Unicode | 🎓 Linguistik-Fachtexte | ⚠️ Wenig |
+| **IPA + Chao-Nummern** | [ma55], [ma35], [ma214], [ma51] | ~100+ Symbole + Ziffern | 🎓 Sinologie/Tonforschung | ⚠️ Wenig |
+| **Zhuyin (Bopomofo)** | ㄇㄚ, ㄇㄚˊ, ㄇㄚˇ, ㄇㄚˋ | 37 Symbole + Tonmarken | 🇹🇼 Taiwan (Schulunterricht) | ⚠️ Taiwan-only |
+| **Wade-Giles** | ma¹, ma², ma³, ma⁴ | 26 lat. Buchstaben + Hochzahlen | 📚 Historisch (vor 1979) | ⚠️ Ältere Texte |
+| **Gwoyeu Romatzyh (GR)** | ma, mar, maa, mah | 26 lat. Buchstaben (Ton im Buchstaben) | 📚 Veraltet (Y.R. Chao, 1928) | ❌ Sehr selten |
+
+**B. Historische/regionale Systeme (nicht mehr aktiv)**
+
+| System | Beispiel | Zeitraum | LLM-Daten |
+|---|---|---|---|
+| **Yale Romanization** | mā, má, mǎ, mà (eigene Konventionen) | 1960er–1980er, Yale-Kurse | ❌ Minimal |
+| **Tongyong Pinyin** | ma, má, mǎ, mà (ähnlich Hanyu, 22 Abweichungen) | 1998–2008, Taiwan (offiziell 2002–2008) | ❌ Gering |
+| **Postal Romanization** | Ma (ohne Ton) | ~1906–1960er, Postamt | ❌ Nur historische Karten |
+| **Latinxua Sin Wenz** | ma, mar, maa, mah (ähnlich GR) | 1931–1950er, sowjetischer Einfluss | ❌ Nahezu null |
 
 > **Sprecher-Notizen:**
-> - Hanyu Pinyin ist der offizielle internationale Standard seit 1958 (VR China) / 1982 (ISO)
-> - In der Literatur: 7 Papers nutzen Pinyin, 2 nutzen IPA, 0 nutzen Zhuyin/Wade-Giles/GR
+> - **11 Systeme insgesamt**, aber nur 7 sind heute relevant — die 4 historischen sind in keinen LLM-Trainingsdaten vertreten
+> - Hanyu Pinyin ist der offizielle internationale Standard seit 1958 (VR China) / 1982 (ISO 7098) / 1986 (UN)
+> - In der Literatur: 7 Papers nutzen Pinyin, 2 nutzen IPA, 0 nutzen Zhuyin/Wade-Giles/GR/Yale/Tongyong
 > - Für LLMs ist Pinyin optimal: lateinische Buchstaben sind in den Trainingsdaten massiv vertreten
 > - IPA-Symbole wie ˥, ˧˥, ˨˩˦ sind seltene Unicode-Zeichen → Token-Fragmentierung bei LLMs möglich
-> - Chirkova (2025): "favouring Chao tone numbers over IPA diacritics for tone representation" (Section 1) — selbst innerhalb der IPA-Tradition werden Chao-Nummern bevorzugt
+> - Yale Romanization war vor Hanyu Pinyin der westliche Standard — heute vollständig durch Pinyin ersetzt
+> - Tongyong Pinyin war nur 6 Jahre offiziell in Taiwan (2002–2008), bevor Taiwan zu Hanyu Pinyin wechselte
+> - Chirkova (2025): "favouring Chao tone numbers over IPA diacritics for tone representation" (Section 1)
 
 ---
 
-# Folie T2: Ton-Darstellung — 5 Methoden im Vergleich
+# Folie T2: Ton-Darstellung — 7 Methoden im Vergleich
 
-**Folientitel:** How to Represent Mandarin Tones
+**Folientitel:** 7 Ways to Represent Mandarin Tones (nach Hacking Chinese + Literatur)
 
-| # | Methode | Beispiel (T1/T2/T3/T4) | Maschinen-lesbar? | LLM-geeignet? |
+| # | Methode | Beispiel (T1/T2/T3/T4) | Maschinenlesbar? | LLM-geeignet? |
 |---|---|---|---|---|
 | 1 | **Pinyin-Diakritika** | mā, má, mǎ, mà | ⚠️ Unicode nötig | ⚠️ Token-Fragmentierung |
-| 2 | **Tonnummern (1-4)** | ma1, ma2, ma3, ma4 | ✅ Klar | ✅ Optimal |
+| 2 | **Tonnummern (1-4)** | ma1, ma2, ma3, ma4 | ✅ Klar | ✅ **Optimal** |
 | 3 | **Chao-Tonnummern** | ma55, ma35, ma214, ma51 | ✅ Präzise | ⚠️ Ungewöhnlich |
-| 4 | **IPA Tone Letters** | ma˥, ma˧˥, ma˨˩˦, ma˥˩ | ⚠️ Exotisch | ❌ Seltene Zeichen |
-| 5 | **Keine Tonmarker** | ma, ma, ma, ma | ✅ Einfach | ✅ Aber Toninfo verloren! |
+| 4 | **IPA Tone Letters** | ma˥, ma˧˥, ma˨˩˦, ma˥˩ | ⚠️ Exotisch | ❌ Seltene Unicode-Zeichen |
+| 5 | **IPA-Diakritika** | [mā], [mǎ] etc. | ⚠️ IPA-Standard | ❌ Selten in Trainingsdaten |
+| 6 | **Bopomofo-Tonmarken** | ㄇㄚ (T1=keine), ㄇㄚˊ, ㄇㄚˇ, ㄇㄚˋ | ⚠️ Nur Zhuyin | ❌ Nur Taiwan-Texte |
+| 7 | **GR-Tonspelling** | ma, mar, maa, mah | ✅ ASCII-only | ❌ Veraltet, mehrdeutig |
 
 **Erklärung Chao-System (5-Stufen-Skala):**
 ```
@@ -167,10 +183,14 @@
 1 ─ ˩  tief                                  ╲
 ```
 
+**Für das Pilot-Experiment relevant:** Methoden 1-4 (+ "ohne Ton" als Baseline)
+
 > **Sprecher-Notizen:**
+> - 7 Methoden nach Hacking Chinese (2024) + Chirkova (2025) + IPA-Handbuch
 > - Chao Yuen Ren (赵元任) entwickelte 1930 das 5-Stufen-System, das bis heute der Standard in der Tonforschung ist
 > - Chirkova (2025): "Chao tone numbers offer the most accurate and reliable method for noting tone variation" (Section 2.2)
 > - Für LLMs ist "ma1" (Tonnummer) optimal: (1) lateinische Buchstaben + Ziffer, (2) kein Unicode-Sonderzeichen, (3) klar maschinenparsbar, (4) massiv in Online-Lernmaterialien vertreten
+> - Methoden 5-7 werden NICHT im Pilot getestet: IPA-Diakritika und Bopomofo-Tonmarken sind zu selten in LLM-Trainingsdaten; GR-Tonspelling ist veraltet und mehrdeutig (z.B. "ma" = T1, aber "mha" ist nicht transparent)
 > - Zou (2025) empfiehlt separate Tonevaluation: "Tone Error Rate (TER) analogous to Word Error Rate is preferred"
 > - Unsere Wahl: **Pinyin + Tonnummer (ma1)** — optimal für LLM-Ausgabe UND maschinenlesbare Evaluation
 
@@ -275,31 +295,110 @@ Unsere 3 Evaluationsebenen:
 
 ---
 
-# Folie T6 (Backup): Pilot-Experiment — Brauchen wir einen Vortest?
+# Folie T6: Pilot-Experiment — Welches Transkriptionsformat für LLMs?
 
-**Folientitel:** Optional Pilot: Which Format Works Best for LLMs?
+**Folientitel:** Pilot Experiment: Which Transcription Format Works Best with LLMs?
 
-**Design (falls durchgeführt):**
-| Format | Beispiel (T1) | LLM-Eignung |
-|---|---|---|
-| A: Pinyin + Tonnummer | ma1 | ✅ Optimal |
-| B: Pinyin + Diakritika | mā | ⚠️ Token-Fragmentierung? |
-| C: IPA + Chao-Nummern | [ma55] | ⚠️ Selten in Trainingsdaten |
-| D: IPA + Tone Letters | [ma˥] | ❌ Exotische Unicode-Zeichen |
+**Hypothese:** *Bei LLMs könnte Pinyin+Tonnummern besser sein als IPA — gegenteilig zu Chirkovas Ergebnis (2025) — weil LLMs massiv mehr Pinyin im Training haben.*
 
-- 50 Silben × 4 Töne × 2 Sprecher = 400 Samples
-- 3 Modelle × 4 Formate = 4.800 API-Calls
-- Geschätzte Kosten: <$10, Zeit: 1 Tag
-- Metrik: Tone Accuracy (%)
+**6 Format-Konfigurationen:**
 
-**Entscheidungsmatrix:**
-- Falls Pinyin+Ton# klar gewinnt → Bestätigung unserer Wahl
-- Falls IPA besser → Chirkova-Ergebnis bestätigt auch für LLMs
-- Falls kein Unterschied → Einfachstes Format (Pinyin+Ton#) wählen
+| # | Format | Beispiel (mā, Ton 1) | Prompt-Anweisung |
+|---|---|---|---|
+| A | **Pinyin + Tonnummer** | ma1 | "Transcribe as Pinyin with tone numbers (1-4)" |
+| B | **Pinyin + Diakritika** | mā | "Transcribe as Pinyin with tone marks (ā á ǎ à)" |
+| C | **Pinyin ohne Töne** | ma | "Transcribe as Pinyin without tones" (Baseline) |
+| D | **IPA + Chao-Nummern** | [ma55] | "Transcribe in IPA with Chao tone numbers (55, 35, 214, 51)" |
+| E | **IPA + Tone Letters** | [ma˥] | "Transcribe in IPA with tone letters (˥ ˧˥ ˨˩˦ ˥˩)" |
+| F | **Chao-Nummern separat** | ma_55 | "Transcribe syllable in Pinyin, tone as Chao numbers" |
+
+```
+Warum gerade diese 6?
+├── A+B: Pinyin-Varianten (LLM-Trainingsdaten massiv)
+├── C:   Baseline ohne Ton → isoliert Tonerkennungs-Effekt
+├── D+E: IPA-Varianten (Chirkovas System → Vergleich)
+└── F:   Hybrid (Pinyin-Silbe + Chao-Ton → Best of Both?)
+```
 
 > **Sprecher-Notizen:**
-> - Dieses Pilot-Experiment ist OPTIONAL — es stärkt die Methodologie, ist aber nicht zwingend nötig
-> - Begründung: Pinyin+Tonnummern ist bereits der Standard in der Literatur und am LLM-freundlichsten
-> - Wenn wir den Pilot durchführen, haben wir ein eigenes empirisches Ergebnis zu einem offenen methodologischen Problem — das wäre ein zusätzlicher Beitrag
-> - Zeitaufwand: 1 Tag (Wochenende), Kosten: <$10
-> - Tim fragen: Lohnt sich der Aufwand für einen Pilot-Vergleich, oder reicht die Literatur-Begründung?
+> - Chirkova (2025) fand: IPA reduziert Tonfehler um 5,2% ggü. Pinyin — ABER mit Wav2Vec2/Whisper, nicht LLMs
+> - Bei LLMs gibt es 3 Gründe, warum Pinyin besser sein KÖNNTE:
+>   1. LLMs haben massiv mehr Pinyin im Training (Wikipedia, Lehrbücher, Unicode-Texte)
+>   2. IPA-Symbole wie ˥, ˧˥, ˨˩˦ sind seltene Unicode-Zeichen → Token-Fragmentierung
+>   3. "ma1" wird als ein Token verarbeitet; "[ma˥]" wird in Subword-Tokens zerhackt
+> - Format C (ohne Töne) dient als Baseline: Wenn das Modell "ma" ohne Ton korrekt transkribiert, wissen wir, dass Silbenerkennung funktioniert — Tonfehler sind dann separat messbar
+> - Format F (Hybrid) testet, ob die Trennung von Silbe und Ton die Genauigkeit verbessert
+> - Dieses Pilot-Experiment liefert ein eigenständiges methodologisches Ergebnis für die Thesis
+
+---
+
+# Folie T7: Pilot-Design — Stichprobe, Modelle & Metriken
+
+**Folientitel:** Pilot Design: 400 Samples × 3 Models × 6 Formats
+
+**Stichprobe (aus Tone Perfect, 9.840 Silben):**
+```
+50 Silben × 4 Töne × 2 Sprecher (1m, 1f) = 400 Samples
+
+Stratifizierte Auswahl:
+├── 10 "einfach"   (a, ma, ba, da, fa, la, na, pa, ta, ka)
+├── 15 "mittel"    (zhuan, xiong, qie, lüe, niu, gui, dui, ...)
+└── 25 "schwierig" (retroflexe: zhi, chi, shi, ri;
+                     Diphthongs: guai, chuang;
+                     Nasale: nüan, reng, zhuang)
+```
+
+**Modelle (3, aus Hauptexperiment):**
+| Modell | Markt | Kosten/1k Calls |
+|---|---|---|
+| Gemini 2.5 Flash | USA | ~$0.15 |
+| DeepSeek V3 | China | ~$0.05 |
+| Qwen2-Audio-7B | China | ~$0.10 |
+
+**5 Metriken:**
+| Metrik | Was sie misst | Berechnung |
+|---|---|---|
+| **Syllable Accuracy** | Silbe korrekt (Initial+Final) | Exact Match auf Pinyin-Silbe |
+| **Tone Accuracy** | Ton korrekt (1-4) | Exact Match auf Tonnummer |
+| **Combined Accuracy** | Silbe UND Ton korrekt | Beide korrekt |
+| **PER** | Phone Error Rate | Levenshtein(Initial+Final) |
+| **Tone Confusion Matrix** | Welche Töne verwechselt? | T2↔T3, T1↔T4, etc. |
+
+**Aufwand:**
+- 3 Modelle × 6 Formate × 400 Samples = **7.200 API-Calls**
+- Geschätzte Kosten: **<$10** (DeepSeek ~$1, Gemini ~$5, Qwen ~$3)
+- Geschätzte Zeit: **1-2 Tage** (inkl. Programmierung + Rate-Limiting)
+
+> **Sprecher-Notizen:**
+> - Die stratifizierte Auswahl stellt sicher, dass schwierige Silben (Retroflexe, Diphthongs) repräsentiert sind — das sind die Silben, bei denen Tonfehler am häufigsten auftreten
+> - 7.200 API-Calls klingen viel, sind aber bei den Preisen der günstigsten Modelle machbar (<$10)
+> - Die Tone Confusion Matrix ist besonders wichtig: Wenn alle Modelle systematisch T2↔T3 verwechseln, deutet das auf ein fundamentales akustisches Problem hin (beide steigen am Ende)
+> - PER (Phone Error Rate) ist die feinste Metrik: Sie erfasst, ob z.B. "zh" als "z" transkribiert wird (Retroflex-Fehler)
+> - Falls Pinyin+Tonnummern klar gewinnt → Bestätigung unserer Wahl für das Hauptexperiment
+> - Falls IPA besser → Chirkova-Ergebnis bestätigt auch für LLMs → IPA für Hauptexperiment erwägen
+> - Falls kein Unterschied → Einfachstes Format (Pinyin+Ton#) wählen → methodologisch sauber
+
+---
+
+# Folie T8: Pilot — Mögliche Ergebnisse & Bedeutung
+
+**Folientitel:** What the Pilot Could Tell Us
+
+| Ergebnis | Schlussfolgerung für Hauptexperiment |
+|---|---|
+| **Pinyin+Ton# > IPA** | LLMs nutzen lateinische Vertrautheit → Pinyin als beste Wahl (**Chirkova-Umkehr**) |
+| **IPA > Pinyin** | Bestätigt Chirkova (2025) → IPA ist auch bei LLMs überlegen |
+| **Pinyin+Diakritika = Pinyin+Ton#** | Töne werden trotz Diakritika korrekt erkannt → Format-Wahl flexibel |
+| **Chao-Nummern separat am besten** | Trennung Silbe/Ton hilft dem Modell → Hybrid-Format für Hauptexperiment |
+| **Alle Formate gleich gut** | Format spielt keine Rolle → einfachstes Format (Pinyin+Ton#) wählen |
+| **Alle Formate schlecht** | LLMs können Töne generell nicht → fundamentales Ergebnis, negiert RQ-Prämisse |
+
+**In der Thesis:**
+> "To determine the optimal phonetic transcription format for evaluating multimodal LLMs on Mandarin tone transcription, we conducted a pilot experiment comparing 6 transcription formats across 3 models. Based on the results, we selected [FORMAT] for the main experiments (RQ1–RQ5)."
+
+> **Sprecher-Notizen:**
+> - Das Pilot-Experiment stärkt die Methodologie erheblich: Statt "wir haben Pinyin+Ton# gewählt, weil es Standard ist" können wir sagen "wir haben empirisch getestet, welches Format am besten funktioniert"
+> - Der interessanteste Fall wäre eine Chirkova-Umkehr (Pinyin > IPA bei LLMs): Das wäre ein eigenständiger Forschungsbeitrag und zeigt, dass ASR-Ergebnisse nicht 1:1 auf LLMs übertragbar sind
+> - Selbst wenn alle Formate gleich gut abschneiden, ist das ein Ergebnis: "Format spielt keine Rolle → einfachstes Format wählen" ist eine valide methodologische Entscheidung
+> - Falls alle Formate schlecht sind (<50% Tone Accuracy): Das wäre das radikalste Ergebnis und würde die gesamte Forschungsfrage verschieben — von "welches Format" zu "können LLMs Töne überhaupt?"
+> - Tim fragen: Soll der Pilot als eigenes Sub-Experiment in die Thesis oder nur als Methodologie-Entscheidung?

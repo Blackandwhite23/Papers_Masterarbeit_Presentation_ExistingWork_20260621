@@ -46,7 +46,7 @@ Der Foliensatz folgt Tims vier Fragen als rotem Faden:
 
 # TEIL II: FOLIEN IM DETAIL (Inhalt + Präsentationsnotiz)
 
-> **Konvention für Präsentationsnotizen:** Wörtliches Zitat in „…", danach (Quelle, Section/Seite). Verifizierte Zitate sind ohne Markierung; Zitate, deren Seite noch aus dem PDF zu bestätigen ist, sind mit **[Seite prüfen]** markiert (siehe Verifizierungs-Checkliste, Teil V).
+> **Konvention für Präsentationsnotizen:** Wörtliches Zitat in „…", danach (Quelle, Section/Seite). Alle in den Notizen verwendeten Zitate sind gegen die Original-PDFs verifiziert (Stand 28.06.2026, siehe Verifizierungs-Checkliste, Teil V).
 
 ---
 
@@ -118,10 +118,10 @@ Der Foliensatz folgt Tims vier Fragen als rotem Faden:
 | Qwen3-ASR (2026) | ~2 % CER | nein |
 
 **Sichtbares Zitat:**
-> „…neglecting important information in audio, such as paralanguage information (e.g., emotion, style, timbre, **tone**)." — Kimi-Audio (2025)
+> „…neglecting important information in audio, such as paralanguage information (e.g., emotion, style, timbre, **tone**)…" — Kimi-Audio (2025), Sec. 8, S. 21
 
 **Präsentationsnotiz:**
-> „Die aktuellen Speech LLMs sind technisch beeindruckend: Kimi-Audio erreicht 0,60 % CER auf AISHELL-1 — die stärkste bekannte Mandarin-ASR-Leistung. Aber alle sieben analysierten Systeme evaluieren ausschließlich Character- oder Word Error Rate. Tongenauigkeit wird in keinem gemessen. Bemerkenswert: Kimi-Audio benennt das Problem selbst und listet ‚tone' explizit als vernachlässigte Information — evaluiert es aber nicht. Wörtlich: ‚text transcription focuses on the content of spoken words, neglecting important information in audio, such as paralanguage information (e.g., emotion, style, timbre, tone)' **[Seite prüfen — Kimi-Audio, Introduction]**. Verifizierbar belegt ist außerdem das Methodenproblem der Community selbst: ‚Current practices suffer from inconsistent metric implementations' (Kimi-Audio, Section 6.1, S. 15). Das heißt: Die Modelle könnten Töne erkennen — wir wissen es nicht, weil niemand misst."
+> „Die aktuellen Speech LLMs sind technisch beeindruckend: Kimi-Audio erreicht 0,60 % CER auf AISHELL-1 — die stärkste bekannte Mandarin-ASR-Leistung. Aber alle sieben analysierten Systeme evaluieren ausschließlich Character- oder Word Error Rate. Tongenauigkeit wird in keinem gemessen. Bemerkenswert: Kimi-Audio benennt das Problem selbst und listet ‚tone' explizit als vernachlässigte Information — evaluiert es aber nicht. Wörtlich: ‚text transcription focuses on the content of spoken words (what is said), neglecting important information in audio, such as paralanguage information (e.g., emotion, style, timbre, tone), acoustic scene, and non-linguistic sounds' (Kimi-Audio, Section 8 ‚Challenges and Future Trends', S. 21). Verifizierbar belegt ist außerdem das Methodenproblem der Community selbst: ‚Current practices suffer from inconsistent metric implementations' (Kimi-Audio, Section 6.1, S. 15). Das heißt: Die Modelle könnten Töne erkennen — wir wissen es nicht, weil niemand misst."
 
 ---
 
@@ -138,7 +138,7 @@ Der Foliensatz folgt Tims vier Fragen als rotem Faden:
 > „there is no direct correspondence between the pronunciation and the written form of Chinese characters." — Zhengjie & Cheng (2025), S. 1
 
 **Präsentationsnotiz:**
-> „Das Paper, das meiner Arbeit am nächsten kommt, ist Zhengjie und Cheng 2025. Sie koppeln einen HuBERT-Encoder an Qwen2-7B und erzeugen aus Audio direkt Pinyin und Zeichen — mit nur 1,9 % Pinyin Error Rate: ‚The PYG-ASR1 model achieved a Pinyin error rate of 1.6%/1.9%' (S. 4). Ihre Motivation deckt sich mit meiner: ‚its implicit alignment often fails to capture phonetic relationships in Chinese, leading to pronunciation confusion and homophone errors' (Abstract). Aber: Das generierte Pinyin enthält **keine** Tonnummern — ‚mā' und ‚mà' werden beide zu ‚ma'. Genau die Information, die ein Aussprache-Feedback braucht, fehlt. Sie benennen selbst, dass kaum erforscht ist, wie LLM-ASR direkt Pinyin erzeugen kann **[Seite prüfen — Zhengjie & Cheng, Introduction]**. Ich kann auf dieser Architektur aufsetzen und genau den fehlenden Schritt — Töne — als Evaluationsachse ergänzen."
+> „Das Paper, das meiner Arbeit am nächsten kommt, ist Zhengjie und Cheng 2025. Sie koppeln einen HuBERT-Encoder an Qwen2-7B und erzeugen aus Audio direkt Pinyin und Zeichen — mit nur 1,9 % Pinyin Error Rate: ‚The PYG-ASR1 model achieved a Pinyin error rate of 1.6%/1.9%' (S. 4). Ihre Motivation deckt sich mit meiner: ‚its implicit alignment often fails to capture phonetic relationships in Chinese, leading to pronunciation confusion and homophone errors' (Abstract). Aber: Das generierte Pinyin enthält **keine** Tonnummern — ‚mā' und ‚mà' werden beide zu ‚ma'. Genau die Information, die ein Aussprache-Feedback braucht, fehlt. Sie benennen selbst, dass kaum erforscht ist, wie LLM-ASR direkt Pinyin erzeugen kann: ‚there has been little exploration of how the LLM-ASR model can directly generate Pinyin and Chinese characters during ASR' (Zhengjie & Cheng, Introduction, S. 1). Ich kann auf dieser Architektur aufsetzen und genau den fehlenden Schritt — Töne — als Evaluationsachse ergänzen."
 
 ---
 
@@ -289,6 +289,8 @@ Verifizierte Zitate (Seite/Section im Analysefile belegt) — direkt in die Noti
 
 | # | Zitat | Quelle | Fundstelle | Folie |
 |---|---|---|---|---|
+| 0 | „text transcription focuses on the content of spoken words (what is said), neglecting important information in audio, such as paralanguage information (e.g., emotion, style, timbre, tone), acoustic scene, and non-linguistic sounds." | Kimi-Audio | Section 8, S. 21 | 4 |
+| 0b | „there has been little exploration of how the LLM-ASR model can directly generate Pinyin and Chinese characters during ASR" | Zhengjie & Cheng | Introduction, S. 1 | 5 |
 | 1 | „Current practices suffer from inconsistent metric implementations (e.g., variations in Word Error Rate calculation…)" | Kimi-Audio | Section 6.1, S. 15 | 4 |
 | 2 | „Kimi-Audio sets SOTA results on AISHELL-1 (0.60)…" | Kimi-Audio | Section 6.2, S. 18 | 4 |
 | 3 | „there is no direct correspondence between the pronunciation and the written form of Chinese characters." | Zhengjie & Cheng | S. 1 | 5 |
@@ -306,15 +308,15 @@ Verifizierte Zitate (Seite/Section im Analysefile belegt) — direkt in die Noti
 
 ---
 
-# TEIL V: VERIFIZIERUNGS-CHECKLISTE (vor der Abgabe/dem Vortrag erledigen)
+# TEIL V: VERIFIZIERUNGS-CHECKLISTE
 
-Zwei rhetorisch starke Zitate haben im Analysefile **keine** gesicherte Seitenangabe. Vor dem Einsatz auf einer Folie bitte die Seite direkt aus dem PDF bestätigen:
+Direkt aus den PDFs verifiziert (28.06.2026):
 
-- [ ] **Kimi-Audio Ton-Zitat** — „…neglecting important information in audio, such as paralanguage information (e.g., emotion, style, timbre, tone)" → Seite/Section aus dem Kimi-Audio-PDF nachtragen (vermutlich Introduction). *Bis dahin in Notiz als [Seite prüfen] markiert.*
-- [ ] **Zhengjie „little exploration"-Zitat** — „there has been little exploration of how the LLM-ASR model can directly generate Pinyin and Chinese characters" → Seite aus dem Interspeech-2025-Paper bestätigen. *Ersatzweise stehen für Folie 5 bereits drei verifizierte Zhengjie-Zitate zur Verfügung (Zitat-Bank #3–5).*
-- [ ] **Step-Audio 2** „neglecting the para-linguistic information" — Seite bestätigen, falls auf einer Folie verwendet.
+- [x] **Kimi-Audio Ton-Zitat** — verifiziert in `2504.18425v1.pdf`, **Page 21, Section 8 „Challenges and Future Trends"**. Exakter Wortlaut (Korrektur ggü. erster Notiz): „text transcription focuses on the content of spoken words **(what is said)**, neglecting important information in audio, such as paralanguage information (e.g., emotion, style, timbre, tone)**, acoustic scene, and non-linguistic sounds**." → Für Folie 4 ggf. mit „…" gekürzt zitieren; voller Wortlaut in Zitat-Bank #0.
+- [x] **Zhengjie „little exploration"-Zitat** — verifiziert in `zhengjie25_interspeech.pdf`, **Page 1 (Introduction)**: „there has been little exploration of how the LLM-ASR model can directly generate Pinyin and Chinese characters during ASR." → Zitat-Bank #0b.
+- [ ] **Step-Audio 2** „neglecting the para-linguistic information" — nur bestätigen, falls dieses Zitat tatsächlich auf eine Folie kommt (aktuell nicht im Foliensatz verwendet).
 
-> Falls die Seite nicht zweifelsfrei feststellbar ist: das Zitat durch ein verifiziertes aus der Zitat-Bank ersetzen, statt eine unsichere Fundstelle anzugeben. (Tims Prinzip: keine Aussage ohne belastbaren Beleg.)
+> Hinweis: Das Kimi-Zitat steht in Section 8 (Future Trends), nicht in der Introduction — d.h. das Modellpaper benennt den Ton-Aspekt selbst als offene Herausforderung. Das ist für die Motivation sogar stärker und kann im Vortrag so betont werden.
 
 ---
 
@@ -323,5 +325,5 @@ Zwei rhetorisch starke Zitate haben im Analysefile **keine** gesicherte Seitenan
 - **Reframing erledigt:** Forschungsgegenstand = Transkriptionsleistung (phonetisch+tonal), Vokabeltrainer nur Motivation.
 - **Related-Work-Bezug:** Folie 3 + Teil III mappen jedes Cluster auf §2.2–2.7.
 - **Tims 4 Fragen** sind der rote Faden: Learnings (Folien 4–7), konkret verwendbar (8), Lücken (9), welche wir schließen (10).
-- **Präsentationsnotizen** enthalten wörtliche Zitate mit Seite/Section; unsichere Fundstellen sind als [Seite prüfen] markiert und in Teil V gelistet.
+- **Präsentationsnotizen** enthalten wörtliche Zitate mit Seite/Section; alle Fundstellen sind gegen die Original-PDFs verifiziert (Teil V abgehakt).
 - **Thesis-Brücke:** Teil III zeigt, wie dieselben Antworten ausführlich in Kapitel 1–3 wandern; Rohtexte liegen in `core_information_combined.md`.

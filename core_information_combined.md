@@ -2858,11 +2858,11 @@ Die beiden Papers ergaenzen sich ideal fuer Stefans Forschungsdesign:
 
 ### Stärkste Zitate für die Thesis:
 
-1. **Kimi-Audio:** *"text transcription focuses on the content of spoken words, neglecting important information in audio, such as paralanguage information (e.g., emotion, style, timbre, tone)."*
+1. **Kimi-Audio:** *"text transcription focuses on the content of spoken words (what is said), neglecting important information in audio, such as paralanguage information (e.g., emotion, style, timbre, tone), acoustic scene, and non-linguistic sounds."* (Section 8, S. 21) [VERIFIZIERT 28.06.2026]
 2. **Peng Survey:** *"extracting richer and finer acoustic information from speech [...] remains limited."*
 3. **MSPB:** *"current speech LLMs remain limited in Mandarin speech prosody comprehension"*
 4. **Zou Review:** *"L2 corpora exist but receive less attention than native-speaker datasets."*
 5. **SITA:** Whisper zeigt "tone collapse" — Ton-Repräsentationen kollabieren in Standard-Modellen
-6. **Zhengjie PYG-ASR:** *"there has been little exploration of how the LLM-ASR model can directly generate Pinyin and Chinese characters"* — und selbst dieses Paper lässt Töne weg
+6. **Zhengjie PYG-ASR:** *"there has been little exploration of how the LLM-ASR model can directly generate Pinyin and Chinese characters during ASR"* (Introduction, S. 1) [VERIFIZIERT 28.06.2026] — und selbst dieses Paper lässt Töne weg
 7. **Chirkova (Baima):** *"complex tones remain the most difficult part of the phonology to transcribe"*
 8. **Gaido Survey:** *"no work has addressed the comparative assessment of different SFMs under controlled conditions within the same framework"*
